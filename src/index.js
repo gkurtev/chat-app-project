@@ -22,8 +22,18 @@ const {
 app.use(express.static(publicDirectory))
 
 io.on('connection', (socket) => {
-  console.log('New WebSocket connection established');
 
+  const mapObject = io.sockets.adapter.rooms
+  const roomNames = []
+
+  for (let [key, value] of mapObject) {
+    if (key.includes('room-')) {
+      const roomName = key.split('-')[1]
+      roomNames.push(roomName)
+    }
+  }
+
+  socket.emit('allRooms', roomNames)
   socket.on('join', (options, callbackMessage) => {
     const {error, user} = addUser({
       id: socket.id,

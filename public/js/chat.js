@@ -13,9 +13,9 @@ const $messageTemplate = document.querySelector('#message-template').innerHTML
 const $locationMessageTemplate = document.querySelector('#location-message-template').innerHTML
 const $sideBarTemplate = document.querySelector('#sidebar-template').innerHTML
 
-
 // Options
-const {username, room} = Qs.parse(location.search, {ignoreQueryPrefix: true})
+let {username, room} = Qs.parse(location.search, {ignoreQueryPrefix: true})
+room = 'room-' + room
 
 const autoScroll = () => {
   //New message element

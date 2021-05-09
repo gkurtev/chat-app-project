@@ -15,15 +15,35 @@
       <h1>Чатаница</h1>
 
       <form action="/chat.html">
-        <label>Прякор мрякор</label>
+        <label>Име</label>
 
-        <input type="text" name="username" placeholder="Display name" required>
+        <input type="text" name="username" placeholder="Име" required>
         <label>Чат стая</label>
-        <input type="text" name="room" placeholder="Room" required>
-        <button>Влизай</button>
+        <input class="js-login-room" type="text" name="room" placeholder="Чат стая" required>
+        <div class="centered-form__dropdown" id="select-holder"></div>
+        <button style="margin-top: 20px;">Влизай</button>
       </form>
     </div>
   </div>
+
+  <script id="chat-rooms-template" type="html/text">
+      <div class="centered-form__select">
+      <label>Активни стаи</label>
+      <select class="js-rooms-selector">
+          <option value="placeholder">Избери</option>
+        {{#rooms}}
+          <option value="{{value}}">{{name}}</option>
+        {{/rooms}}
+      </select>
+  </div>
+    </script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
+  <script src="/socket.io/socket.io.js" charset="utf-8"></script>
+  <script src="/js/login.js"></script>
 </body>
 
 </html>
+
+<!-- Let users pick from list of active rooms or type in custom room name -->
